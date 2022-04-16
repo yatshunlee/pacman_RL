@@ -1,0 +1,5 @@
+2022-04-16T19-19-46
+- lr = 1e-6
+- sync_every = 2e3
+- num_episodes = 1000
+- exploration_rate_decay = 0.99975

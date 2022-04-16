@@ -1,0 +1,38 @@
+'num of episodes: 2000'
+{'action_dim': 9,
+ 'batch_size': 32,
+ 'burnin': 1000.0,
+ 'current_step': 0,
+ 'exploration_rate': 1,
+ 'exploration_rate_decay': 0.99975,
+ 'exploration_rate_min': 0.05,
+ 'gamma': 0.99,
+ 'hidden_dim': 128,
+ 'learn_every': 3,
+ 'loss_fn': SmoothL1Loss(),
+ 'memory': deque([], maxlen=100000),
+ 'net': DDQN(
+  (online): Sequential(
+    (0): Linear(in_features=128, out_features=128, bias=True)
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Linear(in_features=128, out_features=9, bias=True)
+  )
+  (target): Sequential(
+    (0): Linear(in_features=128, out_features=128, bias=True)
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Linear(in_features=128, out_features=9, bias=True)
+  )
+),
+ 'optimizer': Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 1e-06
+    maximize: False
+    weight_decay: 0
+),
+ 'save_dir': WindowsPath('checkpoints/2022-04-16T20-08-40'),
+ 'save_net_every': 10000.0,
+ 'state_dim': 128,
+ 'sync_every': 10000.0}
