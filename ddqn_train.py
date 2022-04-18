@@ -24,10 +24,10 @@ class DDQN(nn.Module):
         super().__init__()
 
         self.online = nn.Sequential(
-            nn.Linear(state_dim, hidden_dim),
+            nn.Linear(state_dim, hidden_dim*2),
             nn.LeakyReLU(),
-            # nn.Linear(hidden_dim, hidden_dim),
-            # nn.LeakyReLU(),
+            nn.Linear(hidden_dim*2, hidden_dim),
+            nn.LeakyReLU(),
             nn.Linear(hidden_dim, action_dim)
         )
 
@@ -75,10 +75,10 @@ class Agent:
     :param: retrain: trained weights dir
     """
     def __init__(self, save_dir, state_dim, action_dim, hidden_dim=128,
-                 exploration_rate=1, exploration_rate_decay=0.99997409, exploration_rate_min=0.075,
-                 save_net_every=1e4, memory_size=200000, batch_size=32, priority_scale=1.,
-                 burnin=5e3, learn_every=3, sync_every=1e4, gamma=0.99,
-                 lr=1e-4, lr_decay=0.999993068, lr_min=1e-5, retrain=None):
+                 exploration_rate=0.1, exploration_rate_decay=0.99997409, exploration_rate_min=0.05,
+                 save_net_every=1e4, memory_size=200000, batch_size=64, priority_scale=1.,
+                 burnin=1e4, learn_every=3, sync_every=1e4, gamma=0.99,
+                 lr=1e-3, lr_decay=0.999993068, lr_min=1e-4, retrain=None):
 
         self.save_dir = save_dir
 
@@ -313,8 +313,8 @@ if __name__ == '__main__':
         state_dim=env.observation_space.shape[0],
         action_dim=env.action_space.n,
         hidden_dim=128,
-        retrain=''
-    ) # checkpoints/2022-04-17T00-27-54/pacman_ddqn_38.chkpt
+        retrain='data/expert2.chkpt'
+    )
 
     logger = MetricLogger(save_dir=save_dir)
 
