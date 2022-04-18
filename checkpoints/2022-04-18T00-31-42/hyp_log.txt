@@ -1,0 +1,46 @@
+'num of episodes: 100000'
+{'action_dim': 9,
+ 'batch_size': 32,
+ 'burnin': 5000.0,
+ 'current_step': 0,
+ 'exploration_rate': 1,
+ 'exploration_rate_decay': 0.999990409,
+ 'exploration_rate_min': 0.075,
+ 'gamma': 0.99,
+ 'hidden_dim': 128,
+ 'learn_every': 3,
+ 'loss_fn': SmoothL1Loss(),
+ 'lr': 0.0001,
+ 'lr_decay': 0.999993068,
+ 'lr_min': 1e-05,
+ 'memory': deque([], maxlen=200000),
+ 'net': DDQN(
+  (online): Sequential(
+    (0): Linear(in_features=128, out_features=128, bias=True)
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Linear(in_features=128, out_features=9, bias=True)
+  )
+  (target): Sequential(
+    (0): Linear(in_features=128, out_features=128, bias=True)
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Linear(in_features=128, out_features=9, bias=True)
+  )
+),
+ 'optimizer': Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    initial_lr: 0.0001
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0
+),
+ 'priorities': deque([], maxlen=200000),
+ 'priority_scale': 1.0,
+ 'retrain': 'checkpoints/2022-04-17T03-55-19/pacman_ddqn_294.chkpt',
+ 'save_dir': WindowsPath('checkpoints/2022-04-18T00-31-42'),
+ 'save_net_every': 10000.0,
+ 'scheduler': <torch.optim.lr_scheduler.StepLR object at 0x000002B957A91550>,
+ 'state_dim': 128,
+ 'sync_every': 10000.0}
