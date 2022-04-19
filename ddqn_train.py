@@ -75,10 +75,10 @@ class Agent:
     :param: retrain: trained weights dir
     """
     def __init__(self, save_dir, state_dim, action_dim, hidden_dim=128,
-                 exploration_rate=0.1, exploration_rate_decay=0.99997409, exploration_rate_min=0.05,
-                 save_net_every=1e4, memory_size=200000, batch_size=64, priority_scale=1.,
-                 burnin=1e4, learn_every=3, sync_every=1e4, gamma=0.99,
-                 lr=1e-3, lr_decay=0.999993068, lr_min=1e-4, retrain=None):
+                 exploration_rate=0.1, exploration_rate_decay=0.999307093, exploration_rate_min=0.05,
+                 save_net_every=1e4, memory_size=300000, batch_size=64, priority_scale=1.,
+                 burnin=1e3, learn_every=3, sync_every=1e4, gamma=0.99,
+                 lr=1e-4, lr_decay=None, lr_min=None, retrain=None): # 4e-5
 
         self.save_dir = save_dir
 
@@ -122,7 +122,7 @@ class Agent:
         self.lr_decay = lr_decay
         self.lr_min = lr_min
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=lr)
-        self.scheduler = StepLR(self.optimizer, step_size=1, gamma=self.lr_decay)
+        self.scheduler = None # StepLR(self.optimizer, step_size=1, gamma=self.lr_decay)
         self.loss_fn = nn.SmoothL1Loss()
 
     def act(self, state):
@@ -246,8 +246,8 @@ class Agent:
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
-        if self.scheduler.get_last_lr()[0] > self.lr_min:
-            self.scheduler.step()
+        # if self.scheduler.get_last_lr()[0] > self.lr_min:
+        #     self.scheduler.step()
         return loss.item(), errors
 
     def sync_Q_target(self):
@@ -313,7 +313,7 @@ if __name__ == '__main__':
         state_dim=env.observation_space.shape[0],
         action_dim=env.action_space.n,
         hidden_dim=128,
-        retrain='data/expert2.chkpt'
+        retrain='data/expert5.chkpt'
     )
 
     logger = MetricLogger(save_dir=save_dir)
