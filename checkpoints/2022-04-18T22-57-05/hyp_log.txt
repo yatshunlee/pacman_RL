@@ -1,0 +1,48 @@
+'num of episodes: 100000'
+{'action_dim': 9,
+ 'batch_size': 32,
+ 'burnin': 1000.0,
+ 'current_step': 0,
+ 'exploration_rate': 0.05,
+ 'exploration_rate_decay': 1.0,
+ 'exploration_rate_min': 0.05,
+ 'gamma': 0.99,
+ 'hidden_dim': 128,
+ 'learn_every': 3,
+ 'loss_fn': SmoothL1Loss(),
+ 'lr': 0.0001,
+ 'lr_decay': None,
+ 'lr_min': None,
+ 'memory': deque([], maxlen=300000),
+ 'net': DDQN(
+  (online): Sequential(
+    (0): Linear(in_features=128, out_features=256, bias=True)
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Linear(in_features=256, out_features=128, bias=True)
+    (3): LeakyReLU(negative_slope=0.01)
+    (4): Linear(in_features=128, out_features=9, bias=True)
+  )
+  (target): Sequential(
+    (0): Linear(in_features=128, out_features=256, bias=True)
+    (1): LeakyReLU(negative_slope=0.01)
+    (2): Linear(in_features=256, out_features=128, bias=True)
+    (3): LeakyReLU(negative_slope=0.01)
+    (4): Linear(in_features=128, out_features=9, bias=True)
+  )
+),
+ 'optimizer': Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0
+),
+ 'priorities': deque([], maxlen=300000),
+ 'priority_scale': 1.0,
+ 'retrain': 'data/expert_CE.chkpt',
+ 'save_dir': WindowsPath('checkpoints/2022-04-18T22-57-05'),
+ 'save_net_every': 10000.0,
+ 'state_dim': 128,
+ 'sync_every': 10000.0}
