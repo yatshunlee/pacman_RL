@@ -81,3 +81,10 @@ to train by DDQN
 to test by DDQN
 
     python ddqn_test.py
+
+### My Training Experience
+Link (video of training): https://www.youtube.com/watch?v=TFmyj-FKIcI&ab_channel=YatshunLee
+
+TLDR: Its performance had improved by PER and imitation learning.
+
+According to the research paper from the deepmind in 2015, the performance of trained agent by deep Q learning on Ms Pacman did underperform a lot compared to human. At first, the performance was very bad even I trained for 1 days (more than 10k episodes). After using PER and imitation learning, the performance had improved obviously although there were only 20 trajectories/samples in the expert dataset.
